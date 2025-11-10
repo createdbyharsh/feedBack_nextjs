@@ -1,45 +1,67 @@
-import Link from "next/link";
-import ButtonSignin from "@/components/ButtonSignin";
+"use client";
+import { Suspense } from "react";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Problem from "@/components/Problem";
+import FeaturesAccordion from "@/components/FeaturesAccordion";
+import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
+import CTA from "@/components/CTA";
+import Footer from "@/components/Footer";
+import FeedBack from "@/components/FeedBack";
+import { useState } from "react";
 
-export default function Page() {
+export default function Home() {
+  const [feedBackList, setFeedBackList] = useState([
+    {
+      username: "harsha",
+      feedback: "bad",
+    },
+    {
+      username: "aritra",
+      feedback: "Really loved the UI and animations!",
+    },
+    {
+      username: "neha",
+      feedback: "Good concept, but loading time is a bit slow.",
+    },
+    {
+      username: "raj",
+      feedback: "Clean design and easy to navigate — great job!",
+    },
+    {
+      username: "tanvi",
+      feedback: "Could use more color contrast for better readability.",
+    },
+  ]);
+
+  const handleDelete = (username) => {
+    setFeedBackList((prev) => prev.filter((x) => x.username !== username));
+  };
+
   return (
     <>
-      <header className="p-4 flex justify-end max-w-7xl mx-auto">
-        <ButtonSignin text="Login" />
-      </header>
-      <main>
-        <section className="flex flex-col items-center justify-center text-center gap-12 px-8 py-24">
-          <h1 className="text-3xl font-extrabold">Ship Fast ⚡️</h1>
-
-          <p className="text-lg opacity-80">
-            The start of your new startup... What are you gonna build?
-          </p>
-
-          <a
-            className="btn btn-primary"
-            href="https://shipfa.st/docs"
-            target="_blank"
-          >
-            Documentation & tutorials{" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-
-          <Link href="/blog" className="link link-hover text-sm">
-            Fancy a blog?
-          </Link>
+      <Suspense>
+        <Header />
+      </Suspense>
+      <main className=" max-w-7xl mx-auto p-8 flex flex-col items-center">
+        <div className="max-w-7xl mx-auto bg-base-100 flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20 px-8 py-8 lg:py-20">
+          <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4">
+            FeedBack
+          </h1>
+        </div>
+        <section className="lg:w-[50%] w-full ">
+          {feedBackList.map((x, id) => (
+            <FeedBack
+              key={id}
+              username={x.username}
+              feedback={x.feedback}
+              onDelete={() => handleDelete(x.username)}
+            />
+          ))}
         </section>
       </main>
+      <Footer />
     </>
   );
 }
