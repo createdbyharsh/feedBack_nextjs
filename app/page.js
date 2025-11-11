@@ -1,16 +1,10 @@
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FeedBackList from "@/components/FeedBackList";
-import connectDB from "@/libs/mongoose";
-import Feedback from "@/models/feedback";
 import Link from "next/link";
+import FeedBackList from "@/components/FeedBackList";
 
-export const revalidate = 0;
-export default async function Home() {
-  await connectDB();
-  const feedBackList = await Feedback.find().sort({ createdAt: -1 }).lean();
-
+export default function Home() {
   return (
     <>
       <Suspense>
@@ -33,9 +27,8 @@ export default async function Home() {
           </Link>
         </div>
 
-        {/* ✅ Pass feedback data to client component */}
         <section className="lg:w-[50%] w-full mt-6">
-          <FeedBackList initialFeedbacks={feedBackList} />
+          <FeedBackList />
         </section>
       </main>
 

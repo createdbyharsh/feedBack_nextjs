@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import User from "@/models/User";
 
 const connectMongo = async () => {
   if (!process.env.MONGODB_URI) {
@@ -12,6 +11,7 @@ const connectMongo = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
+
     .catch((e) => console.error("Mongoose Client Error: " + e.message));
 };
 

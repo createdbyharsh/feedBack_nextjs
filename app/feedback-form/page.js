@@ -13,8 +13,7 @@ const feedbackSchema = z.object({
 });
 
 const FeedbackForm = () => {
-  const [submitted, setSubmitted] = useState(false); // ✅ for success message
-  const router = useRouter();
+  const [submitted, setSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
@@ -32,7 +31,6 @@ const FeedbackForm = () => {
       reset();
       setTimeout(() => {
         setSubmitted(false);
-        router.push("/"); // ✅ navigate to homepage
       }, 1500);
     } catch (error) {
       console.error(error);

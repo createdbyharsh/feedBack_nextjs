@@ -39,6 +39,7 @@
     "stripe": "^13.11.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "userland": "^0.4.3",
     "zod": "^4.1.12"
   },
   "devDependencies": {
