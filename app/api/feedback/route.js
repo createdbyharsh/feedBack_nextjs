@@ -15,3 +15,13 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET() {
+  try {
+    await connectMongo();
+    const data = await Feedback.find();
+    return NextResponse.json(data, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: "Cant get the data" }, { status: 400 });
+  }
+}

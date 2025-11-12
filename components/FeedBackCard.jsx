@@ -11,7 +11,10 @@ const FeedBack = ({ username, feedback, onDelete, onEdit }) => {
           <button className="bg-blue-600 rounded-sm px-3 text-white">
             Edit
           </button>
-          <button className="bg-red-600 rounded-sm px-3 text-white">
+          <button
+            className="bg-red-600 rounded-sm px-3 text-white"
+            onClick={onDelete}
+          >
             Delete
           </button>
         </div>

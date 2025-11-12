@@ -4,6 +4,7 @@ import { getSEOTags } from "@/libs/seo";
 import ClientLayout from "@/components/LayoutClient";
 import config from "@/config";
 import "./globals.css";
+import { Toaster, toast } from "sonner";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         </head>
       )}
       <body>
+        <Toaster />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

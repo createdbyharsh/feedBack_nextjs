@@ -21,6 +21,10 @@ const links = [
     href: "/#faq",
     label: "FAQ",
   },
+  {
+    href: "/user-profile",
+    label: "Profile",
+  },
 ];
 
 const cta = <ButtonSignin extraStyle="btn-primary" />;
