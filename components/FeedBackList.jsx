@@ -2,7 +2,7 @@
 import FeedBackCard from "@/components/FeedBackCard";
 import apiClient from "@/libs/api";
 import { useState, useEffect } from "react";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 
 const FeedBackList = () => {
   const [feedBacks, setFeedBacks] = useState([]);

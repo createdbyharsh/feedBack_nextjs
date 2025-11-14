@@ -25,8 +25,8 @@ const FeedbackForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const result = await apiClient.post("/feedback", data);
-      console.log("server response:", result);
+      await apiClient.post("/feedback", data);
+
       setSubmitted(true);
       reset();
       setTimeout(() => {

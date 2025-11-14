@@ -1,12 +1,26 @@
-"use client";
+import FeedBackCard from "@/components/FeedBackCard";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/next-auth";
+import connectMongo from "@/libs/mongoose";
+import Feedback from "@/models/feedback.schema";
 
-import { useState } from "react";
-import apiClient from "@/libs/api";
+const UserProfile = async () => {
+  await connectMongo();
+  const session = await getServerSession(authOptions);
 
-const UserProfile = () => {
+  const id = session?.user?.id;
+
+  const feedBacks = await Feedback.find({ user: id });
+
   return (
     <>
-      <h1>User Profile</h1>
+      {feedBacks.length > 0 ? (
+        feedBacks.map((x) => (
+          <FeedBackCard key={x.id} username={x.name} feedback={x.feedback} />
+        ))
+      ) : (
+        <div>Such a empty</div>
+      )}
     </>
   );
 };
